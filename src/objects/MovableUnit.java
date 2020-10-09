@@ -1,7 +1,6 @@
 package objects;
 
 import java.awt.Rectangle;
-import java.awt.geom.Point2D.Float;
 
 import manager.ObjectManager;
 

@@ -3,7 +3,6 @@ package objects;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D.Double;
-import java.awt.geom.Rectangle2D;
 
 import Utils.CommonUtil;
 

@@ -14,7 +14,6 @@ import display.MainFrame;
 import manager.ObjectManager;
 import objects.AttackableUnit;
 import objects.Hunter;
-import objects.MovableUnit;
 
 public class Main {
 	public static void main(String[] args) {

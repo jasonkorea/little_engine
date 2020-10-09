@@ -1,7 +1,6 @@
 package objects;
 
 import java.awt.Rectangle;
-import java.awt.geom.Point2D.Float;
 
 public abstract class Attackable extends SelectableObject {
 	public Attackable(Rectangle rectangle) {

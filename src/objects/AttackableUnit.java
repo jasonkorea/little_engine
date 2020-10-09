@@ -21,7 +21,7 @@ public class AttackableUnit extends RandomMovingUnit implements IAttackable {
 	@Override
 	public void hit(IFightable fighter) {
 		final int bulletSize = 5;
-		MovableUnit bullet = new MovableUnit(new Rectangle(getRect().x, getRect().y , bulletSize, bulletSize), true);
+		MovableUnit bullet = new MovableUnit(new Rectangle((int)fighter.getRect().getCenterX(), (int)fighter.getRect().getCenterY() , bulletSize, bulletSize), true);
 		bullet.setColor(Color.RED);
 		bullet.setSpeed(20);
 		ObjectManager.getInstance().addObject(bullet);

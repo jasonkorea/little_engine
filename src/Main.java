@@ -5,16 +5,13 @@ import java.awt.geom.Point2D.Float;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import Utils.CommonUtil;
-import constants.Constants;
 import display.IDisplay;
 import display.MainFrame;
 import manager.ObjectManager;
 import objects.AttackableUnit;
 import objects.Hunter;
-import objects.MovableUnit;
 
 public class Main {
 	public static void main(String[] args) {
@@ -27,15 +24,27 @@ public class Main {
 		Runnable drawRunnable = new Runnable() {
 			@Override
 			public void run() {
-				//long beginTime = System.currentTimeMillis();
-				objectManager.updateData();
-				display.draw();
-				//long endTime = System.currentTimeMillis();
-				//System.out.println("ellapsed time : " + (endTime - beginTime));
+				while (true) {
+					// long beginTime = System.currentTimeMillis();
+					objectManager.updateData();
+					display.draw();
+					try {
+						Thread.sleep(60);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					// long endTime = System.currentTimeMillis();
+					// System.out.println("ellapsed time : " + (endTime - beginTime));
+				}
 			}
 		};
+		
+		Thread t = new Thread(drawRunnable);
+		t.start();
+		
 
-		executor.scheduleAtFixedRate(drawRunnable, 0, Constants.FPS, TimeUnit.MILLISECONDS);
+		//executor.scheduleAtFixedRate(drawRunnable, 0, Constants.FPS, TimeUnit.MILLISECONDS);
 	}
 
 	private static ObjectManager createTestObjects() {

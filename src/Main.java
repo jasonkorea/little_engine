@@ -27,30 +27,36 @@ public class Main {
 		Runnable drawRunnable = new Runnable() {
 			@Override
 			public void run() {
-				//long beginTime = System.currentTimeMillis();
-				objectManager.updateData();
-				display.draw();
-				//long endTime = System.currentTimeMillis();
-				//System.out.println("ellapsed time : " + (endTime - beginTime));
+				while (true) {
+					// long beginTime = System.currentTimeMillis();
+					objectManager.updateData();
+					display.draw();
+					// long endTime = System.currentTimeMillis();
+					// System.out.println("ellapsed time : " + (endTime - beginTime));
+					try {
+						Thread.sleep(30);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 		};
+		
+		Thread t = new Thread(drawRunnable);
+		t.start();
 
-		executor.scheduleAtFixedRate(drawRunnable, 0, Constants.FPS, TimeUnit.MILLISECONDS);
+		// executor.scheduleAtFixedRate(drawRunnable, 0, Constants.FPS,
+		// TimeUnit.MILLISECONDS);
 	}
 
 	private static ObjectManager createTestObjects() {
-		//Hunter
+		// Hunter
 		for (int i = 0; i < 5; i++) {
 			int x1 = CommonUtil.getRandInt(0, Toolkit.getDefaultToolkit().getScreenSize().width);
 			int y1 = CommonUtil.getRandInt(0, Toolkit.getDefaultToolkit().getScreenSize().height);
-			Hunter hunter = new Hunter(
-					new Float(x1, y1),
-					new Rectangle(50, 50),
-					CommonUtil.getRandInt(3, 5),
-					false,
-					CommonUtil.getRandInt(1, 2),
-					CommonUtil.getRandInt(100, 150),
-					CommonUtil.getRandInt(100, 200));
+			Hunter hunter = new Hunter(new Float(x1, y1), new Rectangle(50, 50), CommonUtil.getRandInt(3, 5), false,
+					CommonUtil.getRandInt(1, 2), CommonUtil.getRandInt(100, 150), CommonUtil.getRandInt(100, 200));
 			// MovableUnit hunter = new MovableUnit(new Float(x1, y1), new Rectangle(50,
 			// 50), 3f, false);
 			hunter.setColor(Color.BLUE);
@@ -73,7 +79,8 @@ public class Main {
 				y = CommonUtil.getRandInt(0, Toolkit.getDefaultToolkit().getScreenSize().height);
 				tempRect = new Rectangle(x, y, width, height);
 				for (Rectangle aRect : rects) {
-					bCollision = CommonUtil.checkcirclecollide(aRect.getX(), aRect.getY(), (float)aRect.getWidth(), tempRect.getX(), tempRect.getY(), (float)tempRect.getWidth());
+					bCollision = CommonUtil.checkcirclecollide(aRect.getX(), aRect.getY(), (float) aRect.getWidth(),
+							tempRect.getX(), tempRect.getY(), (float) tempRect.getWidth());
 					if (bCollision) {
 						break;
 					}

@@ -26,7 +26,7 @@ public class AttackableUnit extends RandomMovingUnit implements IAttackable {
 		bullet.setColor(Color.RED);
 		bullet.setSpeed(20);
 		ObjectManager.getInstance().addObject(bullet);
-		bullet.move(this.getRect().getCenterX(), (float)(this.getRect().getY() + this.getRect().getCenterY()) - 5);
+		bullet.move(fighter.getRect().getCenterX(), fighter.getRect().getCenterY());
 
 		int calculatedDamage;
 		if (fighter.getDamage() > this.defence) {
